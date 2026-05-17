@@ -12,7 +12,7 @@ export function DealsShowcase() {
     },
     {
       tag: "Casa",
-      title: "Air Fryer Mondial 4L",
+      title: "Air Fryer Mondial 4L", 
       from: "R$ 599",
       to: "R$ 289",
       off: "52%",
