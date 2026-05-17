@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-const WHATSAPP_INVITE_URL =
-  process.env.NEXT_PUBLIC_WHATSAPP_INVITE_URL ??
-  "https://chat.whatsapp.com/SEU_CODIGO_AQUI";
+const WHATSAPP_INVITE_URL = "https://chat.whatsapp.com/IVsHy1P1XzB3NZYMxZNwBB";
 
 type Props = {
   size?: "md" | "lg" | "xl";
