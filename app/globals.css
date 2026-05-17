@@ -1,0 +1,304 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #e11d2a;
+  --brand-bright: #ff2d3d;
+  --brand-deep: #8b0a14;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #0a0a0b;
+}
+
+body {
+  color: #f4f4f5;
+}
+
+::selection {
+  background: #e11d2a;
+  color: #fff;
+}
+
+/* ===== Red gradient fills ===== */
+.bg-blood {
+  background: linear-gradient(135deg, #ff2d3d 0%, #e11d2a 50%, #8b0a14 100%);
+}
+
+.text-blood {
+  background: linear-gradient(180deg, #ff4d5d 0%, #e11d2a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== Red glow ===== */
+.glow-red {
+  box-shadow:
+    0 0 0 1px rgba(255, 45, 61, 0.4),
+    0 10px 40px -8px rgba(225, 29, 42, 0.6),
+    0 20px 60px -20px rgba(225, 29, 42, 0.4);
+}
+
+.glow-red:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 45, 61, 0.6),
+    0 14px 50px -6px rgba(225, 29, 42, 0.75),
+    0 28px 80px -20px rgba(225, 29, 42, 0.5);
+}
+
+.glow-card {
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+    0 0 40px -10px rgba(225, 29, 42, 0.15);
+}
+
+/* ===== WhatsApp CTA Button (verde — só o botão WA) ===== */
+.btn-wa {
+  background: linear-gradient(135deg, #1aab4b 0%, #0a6e5a 100%);
+  box-shadow:
+    0 0 0 1px rgba(26, 171, 75, 0.3),
+    0 8px 32px -6px rgba(10, 110, 90, 0.5),
+    0 16px 48px -16px rgba(10, 110, 90, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-wa:hover {
+  box-shadow:
+    0 0 0 1px rgba(26, 171, 75, 0.5),
+    0 12px 40px -4px rgba(10, 110, 90, 0.65),
+    0 20px 60px -16px rgba(10, 110, 90, 0.4);
+  transform: translateY(-1px) scale(1.01);
+}
+
+.btn-wa:active {
+  transform: scale(0.98);
+}
+
+/* ===== Background effects ===== */
+.bg-slash {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(225, 29, 42, 0.08) 8px,
+    rgba(225, 29, 42, 0.08) 9px
+  );
+}
+
+.bg-grid-dark {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ===== Live dot (pulsing green) ===== */
+.live-ring {
+  position: relative;
+  display: inline-flex;
+}
+
+.live-ring::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background: #22c55e;
+  animation: live-pulse 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  opacity: 0.6;
+}
+
+@keyframes live-pulse {
+  0%   { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ===== Ember particles ===== */
+
+/* Base dot ember */
+.ember {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ember-sm {
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, #ff9a6c 0%, #e11d2a 60%, transparent 80%);
+  box-shadow: 0 0 4px #ff6b3d, 0 0 8px rgba(225, 29, 42, 0.5);
+}
+
+.ember-md {
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, #ff6b3d 0%, #e11d2a 50%, transparent 70%);
+  box-shadow: 0 0 6px #ff6b3d, 0 0 14px rgba(225, 29, 42, 0.7);
+}
+
+.ember-lg {
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, #ffad8a 0%, #ff2d3d 40%, #8b0a14 80%, transparent 100%);
+  box-shadow: 0 0 8px #ff4d3d, 0 0 20px rgba(225, 29, 42, 0.8), 0 0 40px rgba(225, 29, 42, 0.3);
+}
+
+/* Streak: tall thin sparks */
+.ember-streak {
+  width: 2px;
+  height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(to top, transparent, #ff2d3d 40%, #ff9a6c);
+  box-shadow: 0 0 6px #ff4d3d, 0 0 14px rgba(255, 45, 61, 0.6);
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Glow orb: large diffuse particle */
+.ember-orb {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,100,60,0.9) 0%, rgba(225,29,42,0.5) 50%, transparent 80%);
+  box-shadow:
+    0 0 10px rgba(255, 60, 40, 0.9),
+    0 0 25px rgba(225, 29, 42, 0.6),
+    0 0 50px rgba(225, 29, 42, 0.3);
+  pointer-events: none;
+  position: absolute;
+}
+
+/* ===== Particle animation variants ===== */
+
+/* Straight up */
+@keyframes ember-up {
+  0%   { transform: translateY(0) scale(1);          opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(-100vh) scale(0.2);   opacity: 0; }
+}
+
+/* Drift left as rises */
+@keyframes ember-drift-left {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg);         opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translate(-30px, -45vh) scale(0.7) rotate(-15deg); opacity: 0.8; }
+  100% { transform: translate(-55px, -95vh) scale(0.2) rotate(-30deg); opacity: 0; }
+}
+
+/* Drift right as rises */
+@keyframes ember-drift-right {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg);         opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translate(28px, -40vh) scale(0.7) rotate(12deg);  opacity: 0.8; }
+  100% { transform: translate(50px, -92vh) scale(0.2) rotate(25deg);  opacity: 0; }
+}
+
+/* Spiral / oscillating path */
+@keyframes ember-spiral {
+  0%   { transform: translate(0, 0) scale(1);                      opacity: 0; }
+  10%  { opacity: 1; }
+  25%  { transform: translate(20px,  -22vh) scale(0.85); }
+  50%  { transform: translate(-18px, -50vh) scale(0.65); }
+  75%  { transform: translate(15px,  -72vh) scale(0.45); }
+  100% { transform: translate(-10px, -96vh) scale(0.1);            opacity: 0; }
+}
+
+/* Streak rotates as it climbs */
+@keyframes ember-streak-up {
+  0%   { transform: translateY(0) rotate(0deg) scaleY(1);   opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { transform: translateY(-50vh) rotate(15deg) scaleY(0.8); opacity: 0.7; }
+  100% { transform: translateY(-96vh) rotate(35deg) scaleY(0.3); opacity: 0; }
+}
+
+/* Orb: slow dreamy rise */
+@keyframes ember-orb-rise {
+  0%   { transform: translateY(0) scale(1);   opacity: 0; }
+  15%  { opacity: 0.7; }
+  85%  { opacity: 0.2; }
+  100% { transform: translateY(-80vh) scale(2.5); opacity: 0; }
+}
+
+.animate-ember-up          { animation: ember-up          linear infinite; }
+.animate-ember-drift-left  { animation: ember-drift-left  linear infinite; }
+.animate-ember-drift-right { animation: ember-drift-right linear infinite; }
+.animate-ember-spiral      { animation: ember-spiral      ease-in-out infinite; }
+.animate-ember-streak      { animation: ember-streak-up   linear infinite; }
+.animate-ember-orb         { animation: ember-orb-rise    ease-out infinite; }
+
+/* ===== Title slash accent ===== */
+.title-slash {
+  position: relative;
+  display: inline-block;
+}
+
+.title-slash::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  width: 6px;
+  height: 70%;
+  background: #e11d2a;
+  transform: translateY(-50%) skewX(-12deg);
+}
+
+/* ===== Typography ===== */
+.headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.stamp {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+/* ===== Section divider (red) ===== */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(225, 29, 42, 0.4) 40%, rgba(225, 29, 42, 0.4) 60%, transparent);
+}
+
+/* ===== Animations ===== */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ember-up {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
+}
+
+.animate-ember-up {
+  animation: ember-up linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-ember-up,
+  .btn-wa,
+  .live-ring::before {
+    animation: none;
+    transition: none;
+  }
+}
