@@ -12,7 +12,7 @@ export function FinalCTA() {
 
         <p className="mx-auto mb-6 max-w-sm text-[15px] text-text-primary/70">
           O grupo é gratuito, sem spam e feito para quem quer economizar de
-          verdade sem perder tempo garimpando promoção.
+          verdade sem perder tempo procurando promoção.
         </p>
 
         <WhatsappButton size="xl" label="ENTRAR NO GRUPO GRÁTIS" pulse />

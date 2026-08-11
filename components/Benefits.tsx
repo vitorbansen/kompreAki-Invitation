@@ -4,7 +4,7 @@ const items = [
   {
     icon: "🎯",
     title: "Ofertas selecionadas",
-    desc: "Cupons e promoções relâmpago garimpados todos os dias nas maiores lojas.",
+    desc: "Cupons e promoções relâmpago selecionados todos os dias nas maiores lojas.",
   },
   {
     icon: "⚡",
