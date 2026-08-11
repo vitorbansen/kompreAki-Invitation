@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 type Props = {
   children: React.ReactNode;
   delay?: number;
-  className?: string;
+  className?: string; 
 };
 
 export function FadeInOnScroll({ children, delay = 0, className = "" }: Props) {
