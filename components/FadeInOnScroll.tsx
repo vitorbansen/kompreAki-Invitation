@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
-  children: React.ReactNode;
+  children: React.ReactNode; 
   delay?: number;
   className?: string; 
 };
