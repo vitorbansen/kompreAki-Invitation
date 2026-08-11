@@ -1,6 +1,5 @@
 import { Hero } from "@/components/Hero";
 import { Benefits } from "@/components/Benefits";
-import { Stores } from "@/components/Stores";
 import { HowItWorks } from "@/components/HowItWorks";
 import { FinalCTA } from "@/components/FinalCTA";
 import { FloatingCTA } from "@/components/FloatingCTA";
@@ -11,8 +10,6 @@ export default function Home() {
       <Hero />
       <div className="section-divider" />
       <Benefits />
-      <div className="section-divider" />
-      <Stores />
       <div className="section-divider" />
       <HowItWorks />
       <FinalCTA />

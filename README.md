@@ -46,7 +46,6 @@ app/
 components/
   Hero.tsx              → Headline shimmer + logo em destaque + CTA com auto-ripple
   Benefits.tsx          → 4 cards de benefício com fade-in ao rolar a tela
-  Stores.tsx            → Badges das maiores lojas do Brasil
   HowItWorks.tsx        → 3 passos numerados com seta conectora
   FinalCTA.tsx          → Última chamada com glow radial
   FloatingCTA.tsx       → Botão fixo mobile (aparece após rolar)
@@ -60,7 +59,6 @@ Edite a constante `WHATSAPP_INVITE_URL` em `components/WhatsappButton.tsx` e `co
 ### Mudar textos/ofertas
 - **Headline, tags e badges do hero:** `components/Hero.tsx`
 - **Cards de benefício:** `components/Benefits.tsx` (array `items`)
-- **Lojas em destaque:** `components/Stores.tsx` (array `stores`)
 - **Passos do "como funciona":** `components/HowItWorks.tsx` (array `steps`)
 
 ### Tracking de conversão (Meta Pixel, GA)

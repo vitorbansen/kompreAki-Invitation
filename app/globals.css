@@ -202,25 +202,6 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== Store badges ===== */
-.store-badge {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  color: #333333;
-  font-weight: 700;
-  border-radius: 8px;
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.store-badge:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 140, 26, 0.08);
-  border-color: rgba(255, 140, 26, 0.4);
-}
-
 /* ===== Step number (como funciona) ===== */
 .step-card {
   background: #ffffff;

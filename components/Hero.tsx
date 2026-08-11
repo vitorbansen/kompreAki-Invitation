@@ -94,7 +94,7 @@ export function Hero() {
         </div>
 
         <p className="text-sm font-semibold text-text-primary/60">
-          🛍️ +12 mil compradores espertos já estão no grupo
+          👉 Toque no botão acima e garanta suas ofertas agora
         </p>
       </div>
     </section>
