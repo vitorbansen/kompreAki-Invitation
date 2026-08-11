@@ -1,4 +1,4 @@
-# 🥷 Ninja da Promo — Landing Page
+# 🛍️ Kompreaki — Landing Page
 
 Página de convite para grupo de promoções no WhatsApp, otimizada para alta conversão em tráfego pago (Meta Ads, Google Ads, TikTok Ads).
 
@@ -12,11 +12,7 @@ Página de convite para grupo de promoções no WhatsApp, otimizada para alta co
 # 1. Instalar dependências
 npm install
 
-# 2. Configurar o link do grupo
-cp .env.example .env.local
-# Edite .env.local e coloque seu link real do WhatsApp
-
-# 3. Rodar localmente
+# 2. Rodar localmente
 npm run dev
 # Abre em http://localhost:3000
 ```
@@ -25,64 +21,50 @@ Para deploy: `npm run build && npm run start`, ou faça push pra Vercel (build a
 
 ---
 
-## 🎯 Princípios de conversão aplicados
+## 🎨 Identidade visual
 
-| Elemento | Onde | Por quê |
-|---|---|---|
-| **CTA acima da dobra** | Hero | Visitante decide em 3s |
-| **Prova social imediata** | Badge "+12.847 ninjas" | Reduz risco percebido |
-| **Múltiplos CTAs** | Hero, meio, final, floating | Diferentes momentos de decisão |
-| **CTA flutuante mobile** | `FloatingCTA.tsx` | 70%+ do tráfego pago é mobile |
-| **Numbers grid** | Hero + Final | Quantificar benefício |
-| **Risk reversal** | "100% grátis · Saia quando quiser" | Remove fricção |
-| **FAQ com objeções** | `FAQ.tsx` | Antecipa dúvidas |
-| **Urgência sutil** | Final CTA "oferta perdida" | Sem ser apelativo |
-| **Depoimentos com valor** | `Testimonials.tsx` | "Economizou R$ 1.480" é específico |
+| Elemento | Token Tailwind | Valor |
+| --- | --- | --- |
+| Laranja vibrante (CTAs, destaque) | `bg-primary` / `text-primary` | `#FF8C1A` |
+| Cinza antracite (texto) | `text-text-primary` | `#333333` |
+| Branco (fundo) | `bg-bg-primary` | `#FFFFFF` |
+| Cinza suave (bordas/divisores) | `border-border-light` | `#E5E7EB` |
 
----
+Tipografia: **Inter** (`--font-body`), carregada via `next/font/google` em `app/layout.tsx`.
 
-## 🎨 Personalizando
-
-### Trocar o link do WhatsApp
-Edite `.env.local`:
-```
-NEXT_PUBLIC_WHATSAPP_INVITE_URL=https://chat.whatsapp.com/SEU_CODIGO
-```
-
-### Mudar números/textos
-- **Membros, avaliação, economia:** `components/Hero.tsx` e `components/FinalCTA.tsx`
-- **Ofertas mostradas:** `components/DealsShowcase.tsx` (array `deals`)
-- **Depoimentos:** `components/Testimonials.tsx` (array `testimonials`)
-- **FAQ:** `components/FAQ.tsx` (array `items`)
-
-### Mudar cores
-`tailwind.config.ts` → seção `colors.ninja`. Toda a paleta é controlada por essas variáveis.
-
-### Tracking de conversão (Meta Pixel, GA)
-Todos os CTAs já têm `data-event="cta_whatsapp_click"` e `data-event="cta_floating_click"`. Adicione um script no `app/layout.tsx` ou use o Tag Manager pra disparar eventos quando esses cliques acontecerem.
+Paleta e fontes controladas em `tailwind.config.ts`. Efeitos (shimmer, pulse, ripple, glow, fade-in) em `app/globals.css`.
 
 ---
 
-## 📁 Estrutura
+## 🎯 Estrutura da página (padrão replicado do benchmark do setor)
 
 ```
 app/
-  layout.tsx       → Metadata SEO + fontes (Bebas Neue + Inter)
+  layout.tsx       → Metadata SEO + fonte Inter
   page.tsx         → Composição das seções
-  globals.css      → Tailwind + utilitários customizados
+  globals.css       → Tailwind + utilitários customizados (shimmer, pulse, ripple, glow)
 components/
-  Hero.tsx              → Headline + CTA primário
-  Marquee.tsx           → Faixa de lojas parceiras
-  Benefits.tsx          → 3 pilares (do banner original)
-  HowItWorks.tsx        → 3 passos pra entrar
-  DealsShowcase.tsx     → Cards de ofertas exemplo
-  Testimonials.tsx      → Depoimentos com valor economizado
-  FAQ.tsx               → 6 perguntas frequentes (objeções)
-  FinalCTA.tsx          → Última chamada com urgência
-  Footer.tsx
-  FloatingCTA.tsx       → Botão fixo mobile
-  WhatsappButton.tsx    → Componente reutilizável do CTA
+  Hero.tsx              → Headline shimmer + logo em destaque + CTA com auto-ripple
+  Benefits.tsx          → 4 cards de benefício com fade-in ao rolar a tela
+  Stores.tsx            → Badges das maiores lojas do Brasil
+  HowItWorks.tsx        → 3 passos numerados com seta conectora
+  FinalCTA.tsx          → Última chamada com glow radial
+  FloatingCTA.tsx       → Botão fixo mobile (aparece após rolar)
+  WhatsappButton.tsx    → Componente reutilizável do CTA (com efeito de pulso opcional)
+  FadeInOnScroll.tsx    → Wrapper de animação via IntersectionObserver
 ```
+
+### Trocar o link do WhatsApp
+Edite a constante `WHATSAPP_INVITE_URL` em `components/WhatsappButton.tsx` e `components/FloatingCTA.tsx`.
+
+### Mudar textos/ofertas
+- **Headline, tags e badges do hero:** `components/Hero.tsx`
+- **Cards de benefício:** `components/Benefits.tsx` (array `items`)
+- **Lojas em destaque:** `components/Stores.tsx` (array `stores`)
+- **Passos do "como funciona":** `components/HowItWorks.tsx` (array `steps`)
+
+### Tracking de conversão (Meta Pixel, GA)
+Os CTAs já têm `data-event="cta_whatsapp_click"` e `data-event="cta_floating_click"`. Adicione um script no `app/layout.tsx` ou use o Tag Manager pra disparar eventos quando esses cliques acontecerem.
 
 ---
 

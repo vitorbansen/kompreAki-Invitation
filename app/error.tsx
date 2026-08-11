@@ -14,12 +14,11 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ninja-black px-5 text-center">
-      <p className="stamp text-xs tracking-[0.3em] text-ninja-red">// erro</p>
-      <h2 className="headline text-4xl text-white">Algo deu errado</h2>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-bg-primary px-5 text-center">
+      <h2 className="text-3xl font-black text-text-primary">Algo deu errado</h2>
       <button
         onClick={reset}
-        className="mt-2 rounded-sm bg-ninja-red px-6 py-3 text-sm font-bold uppercase tracking-wider text-white"
+        className="btn-primary mt-2 rounded-xl px-6 py-3 text-sm font-bold uppercase tracking-wider text-white"
       >
         Tentar novamente
       </button>

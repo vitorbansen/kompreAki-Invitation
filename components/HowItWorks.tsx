@@ -1,53 +1,38 @@
+import { FadeInOnScroll } from "./FadeInOnScroll";
+
+const steps = [
+  "Você entra gratuitamente no grupo, sem cadastro.",
+  "Você recebe ofertas selecionadas das maiores lojas do Brasil.",
+  "Você compra o que precisa gastando muito menos.",
+];
+
 export function HowItWorks() {
-  const steps = [
-    {
-      n: "01",
-      title: "Clique no botão",
-      desc: "Toque em \"Entrar no grupo\" e o WhatsApp abre direto no convite. Não precisa criar conta.",
-    },
-    {
-      n: "02",
-      title: "Aceite o convite",
-      desc: "Você entra automaticamente em um grupo silencioso (só admins postam). Nada de spam.",
-    },
-    {
-      n: "03",
-      title: "Receba e economize",
-      desc: "Ofertas chegam várias vezes ao dia. Clicou, comprou, economizou. Simples assim.",
-    },
-  ];
-
   return (
-    <section className="relative bg-ninja-dark py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5">
-        <div className="mb-12 text-center">
-          <p className="stamp mb-3 text-xs tracking-[0.3em] text-ninja-red">
-            // Como funciona
-          </p>
-          <h2 className="headline text-4xl text-white sm:text-5xl">
-            3 passos. <span className="text-blood">60 segundos.</span>
-          </h2>
-        </div>
+    <section className="bg-bg-primary px-5 py-14 sm:py-20">
+      <h2 className="section-title mb-8 text-2xl sm:text-3xl">Como funciona</h2>
 
-        <div className="relative grid gap-6 md:grid-cols-3">
-          {/* Connecting line on desktop */}
-          <div
-            className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-ninja-red/40 to-transparent md:block"
-            aria-hidden="true"
-          />
-
-          {steps.map((step) => (
-            <div key={step.n} className="relative text-center">
-              <div className="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full border-2 border-ninja-red bg-ninja-black">
-                <span className="stamp text-lg text-white">{step.n}</span>
+      <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 lg:flex-row lg:items-stretch">
+        {steps.map((text, i) => (
+          <div key={text} className="contents">
+            <FadeInOnScroll delay={i * 120} className="w-full max-w-xs lg:max-w-none lg:flex-1">
+              <div className="step-card flex h-full flex-col items-center px-6 py-6 text-center">
+                <div className="step-number mb-3 flex h-11 w-11 items-center justify-center text-lg">
+                  {i + 1}
+                </div>
+                <p className="text-sm font-semibold text-text-primary">{text}</p>
               </div>
-              <h3 className="stamp mb-2 text-lg text-white">{step.title}</h3>
-              <p className="mx-auto max-w-xs text-sm text-zinc-400">
-                {step.desc}
-              </p>
-            </div>
-          ))}
-        </div>
+            </FadeInOnScroll>
+
+            {i < steps.length - 1 && (
+              <span
+                className="rotate-90 text-xl font-black text-primary lg:rotate-0"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );

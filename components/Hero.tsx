@@ -1,103 +1,101 @@
 import Image from "next/image";
 import { WhatsappButton } from "./WhatsappButton";
-import { ParticleField } from "./ParticleField";
-import { Countdown } from "./Countdown";
+
+const tags = [
+  { label: "Até 70% OFF", className: "bg-primary text-white" },
+  {
+    label: "Ofertas todo dia",
+    className: "border border-border-light bg-white text-text-primary",
+  },
+  {
+    label: "Direto no WhatsApp",
+    className: "border border-primary/40 bg-text-primary text-primary",
+  },
+];
+
+const floatingBadges = [
+  { label: "🎯 Ofertas verificadas", pos: "left-0 top-0", delay: "0.4s" },
+  { label: "🔥 Vagas limitadas", pos: "right-0 top-[8%]", delay: "0.9s" },
+  { label: "📲 Direto no WhatsApp", pos: "bottom-[8%] left-0", delay: "1.4s" },
+  { label: "🛍️ Maiores lojas do Brasil", pos: "bottom-0 right-0", delay: "1.9s" },
+];
+
+const floatingEmojis = [
+  { emoji: "🛍️", pos: "left-[16%] top-[8%]", delay: "0s", size: "text-3xl" },
+  { emoji: "🏷️", pos: "right-[18%] top-[22%]", delay: "1s", size: "text-2xl" },
+  { emoji: "⚡", pos: "left-[20%] bottom-[18%]", delay: "2s", size: "text-2xl" },
+  { emoji: "🎉", pos: "right-[12%] bottom-[32%]", delay: "1.5s", size: "text-3xl" },
+];
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-ninja-black pb-16 pt-6 sm:pb-24">
-
-      {/* Red radial glow — atrás do ninja */}
-      <div
-        className="absolute left-1/2 top-1/4 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/4 rounded-full bg-ninja-red/20 blur-[120px]"
-        aria-hidden="true"
-      />
-
-      {/* Red top line */}
-      <div
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ninja-red to-transparent"
-        aria-hidden="true"
-      />
-
-      {/* Particles */}
-      <ParticleField />
-
-      <div className="relative mx-auto max-w-lg px-5">
-
-        {/* Countdown ticker */}
-        <div className="flex justify-center">
-          <Countdown />
-        </div>
-
-        {/* Imagem do Ninja — peça central */}
-        <div
-          className="relative mx-auto mt-6 w-72 animate-fade-up"
-          style={{ animationDelay: "80ms" }}
+    <section className="relative overflow-hidden bg-bg-primary px-5 pb-16 pt-12 sm:pb-24 sm:pt-16">
+      {/* Emojis flutuantes de fundo (desktop) */}
+      {floatingEmojis.map((f) => (
+        <span
+          key={f.emoji}
+          className={`pointer-events-none absolute z-0 hidden opacity-40 animate-float lg:block ${f.pos} ${f.size}`}
+          style={{ animationDelay: f.delay }}
+          aria-hidden="true"
         >
-          {/* Glow vermelho por baixo da imagem */}
-          <div
-            className="absolute -bottom-6 left-1/2 h-40 w-3/4 -translate-x-1/2 rounded-full bg-ninja-red/40 blur-[60px]"
-            aria-hidden="true"
-          />
-          <Image
-            src="/ninja.png"
-            alt="Ninja da Promo"
-            width={540}
-            height={540}
-            priority
-            className="relative w-full rounded-full"
-          />
-        </div>
+          {f.emoji}
+        </span>
+      ))}
 
-        {/* Subhead */}
-        <p
-          className="mt-6 text-center text-base text-zinc-400 sm:text-lg animate-fade-up"
-          style={{ animationDelay: "160ms" }}
-        >
-          Receba promoções relâmpago da Amazon, Mercado Livre e Shopee{" "}
-          <span className="font-semibold text-white">direto no seu WhatsApp.</span>{" "}
-          Curadoria real. Zero spam.
-        </p>
+      <div className="relative z-[1] mx-auto flex max-w-xl flex-col items-center gap-6 text-center">
+        <h1 className="text-shimmer text-[28px] font-black leading-[1.15] tracking-tight sm:text-5xl lg:text-6xl">
+          As melhores ofertas de todo o Brasil direto no seu WhatsApp
+        </h1>
 
-        {/* CTA */}
-        <div
-          className="mt-7 animate-fade-up"
-          style={{ animationDelay: "220ms" }}
-        >
-          <WhatsappButton
-            size="xl"
-            label="Entrar no grupo grátis"
-            sublabel="Acesso imediato • Sem cadastro"
-          />
-        </div>
-
-        {/* Trust */}
-        <div
-          className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-xs text-zinc-500 animate-fade-up"
-          style={{ animationDelay: "270ms" }}
-        >
-          {["100% grátis", "Sem cadastro", "Saia quando quiser"].map((t) => (
-            <span key={t} className="flex items-center gap-1.5">
-              <span className="text-ninja-red">✓</span> {t}
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {tags.map((tag, i) => (
+            <span
+              key={tag.label}
+              className={`animate-float rounded-full px-3.5 py-2 text-xs font-extrabold shadow-md sm:text-sm ${tag.className}`}
+              style={{ animationDelay: `${i * 0.4}s` }}
+            >
+              {tag.label}
             </span>
           ))}
         </div>
 
-        {/* Live member count */}
+        {/* Logo — peça central do hero, com distância das badges ao redor */}
         <div
-          className="mt-5 flex justify-center animate-fade-up"
-          style={{ animationDelay: "310ms" }}
+          className="relative mx-auto mt-4 w-full max-w-[300px] animate-fade-up sm:max-w-[360px] lg:max-w-[420px]"
+          style={{ animationDelay: "300ms" }}
         >
-          <div className="inline-flex items-center gap-2 text-xs text-zinc-500">
-            <span className="relative flex h-2 w-2">
-              <span className="live-ring absolute inline-flex h-2 w-2" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-            </span>
-            <span className="font-semibold text-white">+12.847 ninjas</span>
-            no grupo agora
+          <div className="relative mx-auto aspect-square w-[58%]">
+            <div className="image-glow" aria-hidden="true" />
+            <div className="relative z-[1] h-full w-full overflow-hidden rounded-full drop-shadow-xl">
+              <Image
+                src="/logo.png"
+                alt="Kompreaki"
+                fill
+                priority
+                unoptimized
+                className="scale-[1.06] object-cover"
+              />
+            </div>
           </div>
+
+          {floatingBadges.map((badge) => (
+            <span
+              key={badge.label}
+              className={`floating-badge absolute z-[2] px-2.5 py-1.5 text-[9px] sm:text-[11px] lg:text-[13px] ${badge.pos}`}
+              style={{ animationDelay: badge.delay }}
+            >
+              {badge.label}
+            </span>
+          ))}
         </div>
 
+        <div className="w-full max-w-xs">
+          <WhatsappButton size="xl" label="QUERO ENTRAR NO GRUPO" pulse />
+        </div>
+
+        <p className="text-sm font-semibold text-text-primary/60">
+          🛍️ +12 mil compradores espertos já estão no grupo
+        </p>
       </div>
     </section>
   );

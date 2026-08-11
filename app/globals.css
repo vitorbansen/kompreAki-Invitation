@@ -2,104 +2,256 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --brand: #e11d2a;
-  --brand-bright: #ff2d3d;
-  --brand-deep: #8b0a14;
-}
-
 * {
   -webkit-tap-highlight-color: transparent;
 }
 
 html {
   scroll-behavior: smooth;
-  background: #0a0a0b;
+  background: #ffffff;
 }
 
 body {
-  color: #f4f4f5;
+  color: #333333;
 }
 
 ::selection {
-  background: #e11d2a;
+  background: #ff8c1a;
   color: #fff;
 }
 
-/* ===== Red gradient fills ===== */
-.bg-blood {
-  background: linear-gradient(135deg, #ff2d3d 0%, #e11d2a 50%, #8b0a14 100%);
+/* ===== Section title ===== */
+.section-title {
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #333333;
 }
 
-.text-blood {
-  background: linear-gradient(180deg, #ff4d5d 0%, #e11d2a 100%);
+/* ===== Shimmer headline (laranja passando pelo texto) ===== */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg, #333333 20%, #ff8c1a 50%, #333333 80%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
 }
 
-/* ===== Red glow ===== */
-.glow-red {
-  box-shadow:
-    0 0 0 1px rgba(255, 45, 61, 0.4),
-    0 10px 40px -8px rgba(225, 29, 42, 0.6),
-    0 20px 60px -20px rgba(225, 29, 42, 0.4);
+/* ===== Floating tags / badges (hero) ===== */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(4deg);
+  }
 }
 
-.glow-red:hover {
-  box-shadow:
-    0 0 0 1px rgba(255, 45, 61, 0.6),
-    0 14px 50px -6px rgba(225, 29, 42, 0.75),
-    0 28px 80px -20px rgba(225, 29, 42, 0.5);
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }
 
-.glow-card {
-  box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
-    0 0 40px -10px rgba(225, 29, 42, 0.15);
+/* ===== Primary CTA button ===== */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(255, 140, 26, 0.45),
+      0 10px 30px rgba(255, 140, 26, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 0 0 14px rgba(255, 140, 26, 0),
+      0 10px 40px rgba(255, 140, 26, 0.5);
+  }
 }
 
-/* ===== WhatsApp CTA Button (verde — só o botão WA) ===== */
-.btn-wa {
-  background: linear-gradient(135deg, #1aab4b 0%, #0a6e5a 100%);
-  box-shadow:
-    0 0 0 1px rgba(26, 171, 75, 0.3),
-    0 8px 32px -6px rgba(10, 110, 90, 0.5),
-    0 16px 48px -16px rgba(10, 110, 90, 0.3);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+.btn-primary-pulse {
+  animation: pulse-glow 2.4s ease-in-out infinite;
 }
 
-.btn-wa:hover {
-  box-shadow:
-    0 0 0 1px rgba(26, 171, 75, 0.5),
-    0 12px 40px -4px rgba(10, 110, 90, 0.65),
-    0 20px 60px -16px rgba(10, 110, 90, 0.4);
-  transform: translateY(-1px) scale(1.01);
+.btn-primary {
+  background: linear-gradient(135deg, #ff8c1a 0%, #e67300 100%);
+  box-shadow: 0 12px 30px rgba(255, 140, 26, 0.4);
+  border: 2px solid #ffffff;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
 }
 
-.btn-wa:active {
-  transform: scale(0.98);
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.06);
+  box-shadow: 0 16px 40px rgba(255, 140, 26, 0.55);
 }
 
-/* ===== Background effects ===== */
-.bg-slash {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 8px,
-    rgba(225, 29, 42, 0.08) 8px,
-    rgba(225, 29, 42, 0.08) 9px
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-clicking {
+  transform: scale(0.94);
+}
+
+/* ===== Ripple (efeito de "clique" simulado) ===== */
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) scale(1);
+  border-radius: inherit;
+  background: rgba(255, 140, 26, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes ripple-out {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.45);
+  }
+}
+
+.ripple-active {
+  animation: ripple-out 0.7s ease-out;
+}
+
+/* ===== Hero image glow + accent dots ===== */
+.image-glow {
+  position: absolute;
+  inset: -30px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 140, 26, 0.28) 0%,
+    rgba(255, 179, 102, 0.14) 45%,
+    transparent 70%
   );
+  filter: blur(10px);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-.bg-grid-dark {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 56px 56px;
+.dots-row span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #ff8c1a 0%, #e67300 100%);
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.15),
+    inset 0 2px 2px rgba(255, 255, 255, 0.5);
+  border: 2px solid #ffffff;
 }
 
-/* ===== Live dot (pulsing green) ===== */
+.floating-badge {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #333333;
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: float 5s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+/* ===== Benefit cards ===== */
+.benefit-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-top: 3px solid #ff8c1a;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  border-color: #ff8c1a;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+}
+
+.card-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff8c1a;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Store badges ===== */
+.store-badge {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #333333;
+  font-weight: 700;
+  border-radius: 8px;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.store-badge:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 140, 26, 0.08);
+  border-color: rgba(255, 140, 26, 0.4);
+}
+
+/* ===== Step number (como funciona) ===== */
+.step-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+.step-number {
+  background: linear-gradient(135deg, #ff8c1a, #e67300);
+  color: #ffffff;
+  font-weight: 900;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(255, 140, 26, 0.35);
+}
+
+/* ===== CTA final glow ===== */
+.cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 140, 26, 0.18) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+/* ===== Live dot (pulsing) ===== */
 .live-ring {
   position: relative;
   display: inline-flex;
@@ -116,187 +268,43 @@ body {
 }
 
 @keyframes live-pulse {
-  0%   { transform: scale(0.9); opacity: 0.6; }
-  100% { transform: scale(2.2); opacity: 0; }
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
 }
 
-/* ===== Ember particles ===== */
-
-/* Base dot ember */
-.ember {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.ember-sm {
-  width: 2px;
-  height: 2px;
-  background: radial-gradient(circle, #ff9a6c 0%, #e11d2a 60%, transparent 80%);
-  box-shadow: 0 0 4px #ff6b3d, 0 0 8px rgba(225, 29, 42, 0.5);
-}
-
-.ember-md {
-  width: 3px;
-  height: 3px;
-  background: radial-gradient(circle, #ff6b3d 0%, #e11d2a 50%, transparent 70%);
-  box-shadow: 0 0 6px #ff6b3d, 0 0 14px rgba(225, 29, 42, 0.7);
-}
-
-.ember-lg {
-  width: 5px;
-  height: 5px;
-  background: radial-gradient(circle, #ffad8a 0%, #ff2d3d 40%, #8b0a14 80%, transparent 100%);
-  box-shadow: 0 0 8px #ff4d3d, 0 0 20px rgba(225, 29, 42, 0.8), 0 0 40px rgba(225, 29, 42, 0.3);
-}
-
-/* Streak: tall thin sparks */
-.ember-streak {
-  width: 2px;
-  height: 12px;
-  border-radius: 2px;
-  background: linear-gradient(to top, transparent, #ff2d3d 40%, #ff9a6c);
-  box-shadow: 0 0 6px #ff4d3d, 0 0 14px rgba(255, 45, 61, 0.6);
-  pointer-events: none;
-  position: absolute;
-}
-
-/* Glow orb: large diffuse particle */
-.ember-orb {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,100,60,0.9) 0%, rgba(225,29,42,0.5) 50%, transparent 80%);
-  box-shadow:
-    0 0 10px rgba(255, 60, 40, 0.9),
-    0 0 25px rgba(225, 29, 42, 0.6),
-    0 0 50px rgba(225, 29, 42, 0.3);
-  pointer-events: none;
-  position: absolute;
-}
-
-/* ===== Particle animation variants ===== */
-
-/* Straight up */
-@keyframes ember-up {
-  0%   { transform: translateY(0) scale(1);          opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 0.6; }
-  100% { transform: translateY(-100vh) scale(0.2);   opacity: 0; }
-}
-
-/* Drift left as rises */
-@keyframes ember-drift-left {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg);         opacity: 0; }
-  10%  { opacity: 1; }
-  50%  { transform: translate(-30px, -45vh) scale(0.7) rotate(-15deg); opacity: 0.8; }
-  100% { transform: translate(-55px, -95vh) scale(0.2) rotate(-30deg); opacity: 0; }
-}
-
-/* Drift right as rises */
-@keyframes ember-drift-right {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg);         opacity: 0; }
-  10%  { opacity: 1; }
-  50%  { transform: translate(28px, -40vh) scale(0.7) rotate(12deg);  opacity: 0.8; }
-  100% { transform: translate(50px, -92vh) scale(0.2) rotate(25deg);  opacity: 0; }
-}
-
-/* Spiral / oscillating path */
-@keyframes ember-spiral {
-  0%   { transform: translate(0, 0) scale(1);                      opacity: 0; }
-  10%  { opacity: 1; }
-  25%  { transform: translate(20px,  -22vh) scale(0.85); }
-  50%  { transform: translate(-18px, -50vh) scale(0.65); }
-  75%  { transform: translate(15px,  -72vh) scale(0.45); }
-  100% { transform: translate(-10px, -96vh) scale(0.1);            opacity: 0; }
-}
-
-/* Streak rotates as it climbs */
-@keyframes ember-streak-up {
-  0%   { transform: translateY(0) rotate(0deg) scaleY(1);   opacity: 0; }
-  8%   { opacity: 1; }
-  50%  { transform: translateY(-50vh) rotate(15deg) scaleY(0.8); opacity: 0.7; }
-  100% { transform: translateY(-96vh) rotate(35deg) scaleY(0.3); opacity: 0; }
-}
-
-/* Orb: slow dreamy rise */
-@keyframes ember-orb-rise {
-  0%   { transform: translateY(0) scale(1);   opacity: 0; }
-  15%  { opacity: 0.7; }
-  85%  { opacity: 0.2; }
-  100% { transform: translateY(-80vh) scale(2.5); opacity: 0; }
-}
-
-.animate-ember-up          { animation: ember-up          linear infinite; }
-.animate-ember-drift-left  { animation: ember-drift-left  linear infinite; }
-.animate-ember-drift-right { animation: ember-drift-right linear infinite; }
-.animate-ember-spiral      { animation: ember-spiral      ease-in-out infinite; }
-.animate-ember-streak      { animation: ember-streak-up   linear infinite; }
-.animate-ember-orb         { animation: ember-orb-rise    ease-out infinite; }
-
-/* ===== Title slash accent ===== */
-.title-slash {
-  position: relative;
-  display: inline-block;
-}
-
-.title-slash::before {
-  content: "";
-  position: absolute;
-  left: -16px;
-  top: 50%;
-  width: 6px;
-  height: 70%;
-  background: #e11d2a;
-  transform: translateY(-50%) skewX(-12deg);
-}
-
-/* ===== Typography ===== */
-.headline {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 0.9;
-  text-transform: uppercase;
-}
-
-.stamp {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-}
-
-/* ===== Section divider (red) ===== */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(225, 29, 42, 0.4) 40%, rgba(225, 29, 42, 0.4) 60%, transparent);
-}
-
-/* ===== Animations ===== */
+/* ===== Fade up on scroll ===== */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-up {
   animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes ember-up {
-  0%   { transform: translateY(0) scale(1); opacity: 0; }
-  20%  { opacity: 1; }
-  100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
-}
-
-.animate-ember-up {
-  animation: ember-up linear infinite;
+/* ===== Section divider ===== */
+.section-divider {
+  height: 1px;
+  background: #e5e7eb;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
-  .animate-ember-up,
-  .btn-wa,
+  .animate-float,
+  .btn-primary-pulse,
+  .text-shimmer,
   .live-ring::before {
     animation: none;
     transition: none;
