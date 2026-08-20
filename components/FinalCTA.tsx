@@ -1,4 +1,5 @@
 import { WhatsappButton } from "./WhatsappButton";
+import { SocialProof } from "./SocialProof";
 
 export function FinalCTA() {
   return (
@@ -17,7 +18,11 @@ export function FinalCTA() {
 
         <WhatsappButton size="xl" label="ENTRAR NO GRUPO GRÁTIS" pulse />
 
-        <p className="mt-4 text-xs font-bold tracking-wide text-text-primary/50">
+        <div className="mt-4">
+          <SocialProof />
+        </div>
+
+        <p className="mt-3 text-xs font-bold tracking-wide text-text-primary/50">
           Gratuito • Sem spam • Ofertas selecionadas
         </p>
       </div>

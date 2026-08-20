@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { WhatsappButton } from "./WhatsappButton";
+import { SocialProof } from "./SocialProof";
 
 const tags = [
   { label: "Até 70% OFF", className: "bg-primary text-white" },
@@ -59,9 +60,16 @@ export function Hero() {
           ))}
         </div>
 
+        {/* CTA logo abaixo do título — já aparece na primeira dobra, sem precisar rolar */}
+        <div className="w-full max-w-xs">
+          <WhatsappButton size="xl" label="QUERO ENTRAR NO GRUPO" pulse />
+        </div>
+
+        <SocialProof />
+
         {/* Logo — peça central do hero, com distância das badges ao redor */}
         <div
-          className="relative mx-auto mt-4 w-full max-w-[300px] animate-fade-up sm:max-w-[360px] lg:max-w-[420px]"
+          className="relative mx-auto mt-2 w-full max-w-[300px] animate-fade-up sm:max-w-[360px] lg:max-w-[420px]"
           style={{ animationDelay: "300ms" }}
         >
           <div className="relative mx-auto aspect-square w-[58%]">
@@ -88,14 +96,6 @@ export function Hero() {
             </span>
           ))}
         </div>
-
-        <div className="w-full max-w-xs">
-          <WhatsappButton size="xl" label="QUERO ENTRAR NO GRUPO" pulse />
-        </div>
-
-        <p className="text-sm font-semibold text-text-primary/60">
-          👉 Toque no botão acima e garanta suas ofertas agora
-        </p>
       </div>
     </section>
   );
